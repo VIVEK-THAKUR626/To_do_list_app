@@ -1,13 +1,16 @@
 const addTask = document.getElementById("addTask");
 const enterTask = document.getElementById("enterTask");
+const editTask = document.getElementById("edit");
+const deleteTask = document.getElementById("delete");
+
 const toDoList = document.querySelector(".list");
 const contextMenu = document.querySelector(".contextMenu");
-const contextMenuItems = document.querySelectorAll("li");
 
 const taskArray = [];
 const checkArray = [];
 
 let taskIndex = 0;
+let selectedTask = "";
 
 addTask.addEventListener("click",()=>{
     if(enterTask.value.trim() != ""){
@@ -40,7 +43,7 @@ addTask.addEventListener("click",()=>{
         checkbox.addEventListener("click",(event)=>{
             if(event.currentTarget.className === "taskCompleted"){
                 event.currentTarget.innerHTML = ``;
-                event.currentTarget.className = "taskPending"
+                event.currentTarget.className = "taskPending";
             }else{
                 event.currentTarget.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" height="2.1em" width="2.1em"><path fill="#26d317ff" d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"/></svg>`;
                 event.currentTarget.className = "taskCompleted";
@@ -52,10 +55,25 @@ addTask.addEventListener("click",()=>{
             contextMenu.style.display = "block";
             contextMenu.style.left = `${event.clientX}px`;
             contextMenu.style.top = `${event.clientY}px`;
+            selectedTask = event.currentTarget.parentElement.className;
         })
 
         document.addEventListener("click",()=>{
             contextMenu.style.display = "none";
+        })
+
+        deleteTask.addEventListener("click",()=>{
+            taskArray.forEach(divs => {
+                if(divs.className === selectedTask){
+                    const indexOfDiv = taskArray.indexOf(divs,0);
+                    divs.remove();
+                    taskArray.splice(indexOfDiv,1);
+                }
+            });
+        })
+
+        editTask.addEventListener("click",()=>{
+
         })
 
         taskDiv.appendChild(task);
@@ -117,10 +135,21 @@ enterTask.addEventListener("keydown",(event)=>{
             contextMenu.style.display = "block";
             contextMenu.style.left = `${event.clientX}px`;
             contextMenu.style.top = `${event.clientY}px`;
+            selectedTask = event.currentTarget.parentElement.className;
         })
 
         document.addEventListener("click",()=>{
             contextMenu.style.display = "none";
+        })
+
+        deleteTask.addEventListener("click",()=>{
+            taskArray.forEach(divs => {
+                if(divs.className === selectedTask){
+                    const indexOfDiv = taskArray.indexOf(divs,0);
+                    divs.remove();
+                    taskArray.splice(indexOfDiv,1);
+                }
+            });
         })
 
         taskDiv.appendChild(task);

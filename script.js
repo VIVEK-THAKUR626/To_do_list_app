@@ -1,6 +1,8 @@
 const addTask = document.getElementById("addTask");
 const enterTask = document.getElementById("enterTask");
-const toDoList = document.querySelector(".list")
+const toDoList = document.querySelector(".list");
+const contextMenu = document.querySelector(".contextMenu");
+const contextMenuItems = document.querySelectorAll("li");
 
 const taskArray = [];
 const checkArray = [];
@@ -15,15 +17,15 @@ addTask.addEventListener("click",()=>{
         taskDiv.style.display = "flex";
         taskDiv.style.justifyContent = "space-around";
         taskDiv.style.alignItems = "center";
-        taskDiv.style.borderBottom = "3px solid black";
+        taskDiv.style.borderBottom = "3px solid lightgrey";
         taskDiv.style.margin = "0 1em 0 1em";
 
-        const task = document.createElement('li');
+        const task = document.createElement('p');
 
         task.style.width = "60%";
         task.style.height = "2em";
         task.style.fontSize = "1.75em";
-        task.style.margin = "0.35em 0 0 0";
+        task.style.margin = "0.45em 0 0 0";
         task.textContent = enterTask.value;
 
         const checkbox = document.createElement('div');
@@ -43,6 +45,17 @@ addTask.addEventListener("click",()=>{
                 event.currentTarget.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" height="2.1em" width="2.1em"><path fill="#26d317ff" d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"/></svg>`;
                 event.currentTarget.className = "taskCompleted";
             }
+        })
+
+        task.addEventListener("contextmenu",(event)=>{
+            event.preventDefault();
+            contextMenu.style.display = "block";
+            contextMenu.style.left = `${event.clientX}px`;
+            contextMenu.style.top = `${event.clientY}px`;
+        })
+
+        document.addEventListener("click",()=>{
+            contextMenu.style.display = "none";
         })
 
         taskDiv.appendChild(task);
@@ -68,15 +81,16 @@ enterTask.addEventListener("keydown",(event)=>{
         taskDiv.style.display = "flex";
         taskDiv.style.justifyContent = "space-around";
         taskDiv.style.alignItems = "center";
-        taskDiv.style.borderBottom = "3px solid black";
+        taskDiv.style.borderBottom = "3px solid lightgrey";
         taskDiv.style.margin = "0 1em 0 1em";
+        taskDiv.style.overflow = "scroll";
 
-        const task = document.createElement('li');
+        const task = document.createElement('p');
 
         task.style.width = "60%";
         task.style.height = "2em";
         task.style.fontSize = "1.75em";
-        task.style.margin = "0.35em 0 0 0";
+        task.style.margin = "0.45em 0 0 0";
         task.textContent = enterTask.value;
 
         const checkbox = document.createElement('div');
@@ -96,6 +110,17 @@ enterTask.addEventListener("keydown",(event)=>{
                 event.currentTarget.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" height="2.1em" width="2.1em"><path fill="#6acd18" d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"/></svg>`;
                 event.currentTarget.className = "taskCompleted";
             }
+        })
+
+        task.addEventListener("contextmenu",(event)=>{
+            event.preventDefault();
+            contextMenu.style.display = "block";
+            contextMenu.style.left = `${event.clientX}px`;
+            contextMenu.style.top = `${event.clientY}px`;
+        })
+
+        document.addEventListener("click",()=>{
+            contextMenu.style.display = "none";
         })
 
         taskDiv.appendChild(task);

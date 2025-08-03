@@ -40,8 +40,11 @@
     font-weight: bold;
 }
 .list{
+    display: flex;
+    flex-direction: column;
+    justify-content: 'space-evenly';
     height: 80%;
-    background-color: green;
+    background-color: lightblue;
     width: 80%;
     align-self: center;
     border-radius: 20px;

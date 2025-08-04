@@ -17,8 +17,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 75vh;
-    width: 30em;
+    height: 80vh;
+    width: 35em;
 }
 .input{
     display: flex;
@@ -59,10 +59,13 @@ button{
     height: fit-content;
     align-self: center;
 }
+.options button{
+    width: 15em;
+}
 #clearAll,#progress{
     width: 40%;
 }
-.contextMenu,#editInput{
+.contextMenu,#editInput,#progressReport{
     display: none;
     position: absolute; 
     z-index: 1000;
@@ -72,6 +75,14 @@ button{
     background-color: lightblue;
     padding: 0.5em;
     opacity: 0.8;
+}
+#progressReport{
+    z-index: 0;
+    position: static;
+    padding: 0;
+    align-self: center;
+    width: 80%;
+    text-align: center;
 }
 #editInput{
     padding: 1em;

@@ -1,9 +1,15 @@
 const addTask = document.getElementById("addTask");
 const enterTask = document.getElementById("enterTask");
+
 const editTask = document.getElementById("edit");
+const editTaskInput = document.getElementById("editInput");
+
 const deleteTask = document.getElementById("delete");
 const clearAll = document.getElementById("clearAll");
-const editTaskInput = document.getElementById("editInput");
+
+const showProgress = document.getElementById("progress");
+const hideProgress = document.getElementById("hideProgress");
+const progressReport = document.getElementById("progressReport");
 
 const toDoList = document.querySelector(".list");
 const contextMenu = document.querySelector(".contextMenu");
@@ -83,6 +89,22 @@ addTask.addEventListener("click",()=>{
                     alert("Enter something");
                 }
             }
+        })
+
+        showProgress.addEventListener("click",()=>{
+            let completedTasks = 0; 
+            checkArray.forEach(element => {
+                if(element.className === "taskCompleted"){
+                    completedTasks += 1;
+                }
+            });
+            const progress_in_numbers = (completedTasks/checkArray.length)*100;
+            progressReport.textContent = `Tasks Completed = ${progress_in_numbers}% (${completedTasks}/${checkArray.length})`;
+            progressReport.style.display = "block";
+        })
+
+        hideProgress.addEventListener("click",()=>{
+            progressReport.style.display = "none";
         })
 
         taskDiv.appendChild(task);
@@ -168,6 +190,22 @@ enterTask.addEventListener("keydown",(event)=>{
                 taskArray.shift();
                 checkArray.shift();
             });
+        })
+
+        showProgress.addEventListener("click",()=>{
+            let completedTasks = 0; 
+            checkArray.forEach(element => {
+                if(element.className === "taskCompleted"){
+                    completedTasks += 1;
+                }
+            });
+            const progress_in_numbers = (completedTasks/checkArray.length)*100;
+            progressReport.textContent = `Tasks Completed = ${progress_in_numbers}% (${completedTasks}/${checkArray.length})`;
+            progressReport.style.display = "block";
+        })
+
+        hideProgress.addEventListener("click",()=>{
+            progressReport.style.display = "none";
         })
 
         taskDiv.appendChild(task);

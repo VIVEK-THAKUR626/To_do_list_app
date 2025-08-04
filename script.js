@@ -17,28 +17,11 @@ addTask.addEventListener("click",()=>{
         const taskDiv = document.createElement('div');
         taskDiv.className = `${taskIndex}`;
 
-        taskDiv.style.display = "flex";
-        taskDiv.style.justifyContent = "space-around";
-        taskDiv.style.alignItems = "center";
-        taskDiv.style.borderBottom = "3px solid lightgrey";
-        taskDiv.style.margin = "0 1em 0 1em";
-
         const task = document.createElement('p');
-
-        task.style.width = "60%";
-        task.style.height = "2em";
-        task.style.fontSize = "1.75em";
-        task.style.margin = "0.45em 0 0 0";
         task.textContent = enterTask.value;
 
         const checkbox = document.createElement('div');
-
         checkbox.className = "taskPending";
-        checkbox.style.backgroundColor = "black";
-        checkbox.style.height = "2em";
-        checkbox.style.width = "10%";
-        checkbox.style.border = "1.5px solid black";
-        checkbox.style.borderRadius = "10px";
 
         checkbox.addEventListener("click",(event)=>{
             if(event.currentTarget.className === "taskCompleted"){
@@ -68,6 +51,7 @@ addTask.addEventListener("click",()=>{
                     const indexOfDiv = taskArray.indexOf(divs,0);
                     divs.remove();
                     taskArray.splice(indexOfDiv,1);
+                    checkArray.splice(indexOfDiv,1);
                 }
             });
         })
@@ -96,29 +80,11 @@ enterTask.addEventListener("keydown",(event)=>{
         const taskDiv = document.createElement('div');
         taskDiv.className = `${taskIndex}`;
 
-        taskDiv.style.display = "flex";
-        taskDiv.style.justifyContent = "space-around";
-        taskDiv.style.alignItems = "center";
-        taskDiv.style.borderBottom = "3px solid lightgrey";
-        taskDiv.style.margin = "0 1em 0 1em";
-        taskDiv.style.overflow = "scroll";
-
         const task = document.createElement('p');
-
-        task.style.width = "60%";
-        task.style.height = "2em";
-        task.style.fontSize = "1.75em";
-        task.style.margin = "0.45em 0 0 0";
         task.textContent = enterTask.value;
 
         const checkbox = document.createElement('div');
-
         checkbox.className = "taskPending";
-        checkbox.style.backgroundColor = "black";
-        checkbox.style.height = "2em";
-        checkbox.style.width = "10%";
-        checkbox.style.border = "1.5px solid black";
-        checkbox.style.borderRadius = "10px";
 
         checkbox.addEventListener("click",(event)=>{
             if(event.currentTarget.className === "taskCompleted"){
@@ -148,6 +114,7 @@ enterTask.addEventListener("keydown",(event)=>{
                     const indexOfDiv = taskArray.indexOf(divs,0);
                     divs.remove();
                     taskArray.splice(indexOfDiv,1);
+                    checkArray.splice(indexOfDiv,1);
                 }
             });
         })

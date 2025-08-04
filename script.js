@@ -3,6 +3,7 @@ const enterTask = document.getElementById("enterTask");
 const editTask = document.getElementById("edit");
 const deleteTask = document.getElementById("delete");
 const clearAll = document.getElementById("clearAll");
+const editTaskInput = document.getElementById("editInput");
 
 const toDoList = document.querySelector(".list");
 const contextMenu = document.querySelector(".contextMenu");
@@ -12,6 +13,7 @@ const checkArray = [];
 
 let taskIndex = 0;
 let selectedTask = "";
+let selectedTaskForEdit = "";
 
 addTask.addEventListener("click",()=>{
     if(enterTask.value.trim() != ""){
@@ -40,6 +42,7 @@ addTask.addEventListener("click",()=>{
             contextMenu.style.left = `${event.clientX}px`;
             contextMenu.style.top = `${event.clientY}px`;
             selectedTask = event.currentTarget.parentElement.className;
+            selectedTaskForEdit = event.currentTarget;
         })
 
         document.addEventListener("click",()=>{
@@ -65,8 +68,21 @@ addTask.addEventListener("click",()=>{
             });
         })
 
-        editTask.addEventListener("click",()=>{
+        editTask.addEventListener("click",(event)=>{
+            editTaskInput.style.display = "block";
+            editTaskInput.style.left = `${event.clientX}px`;
+            editTaskInput.style.top = `${event.clientY}px`;
+        })
 
+        editTaskInput.addEventListener("keydown",(event)=>{
+            if(event.key === "Enter"){
+                if(editTaskInput.value.trim() != ''){
+                    selectedTaskForEdit.textContent = editTaskInput.value;
+                    editTaskInput.style.display = "none";
+                }else{
+                    alert("Enter something");
+                }
+            }
         })
 
         taskDiv.appendChild(task);
@@ -111,6 +127,7 @@ enterTask.addEventListener("keydown",(event)=>{
             contextMenu.style.left = `${event.clientX}px`;
             contextMenu.style.top = `${event.clientY}px`;
             selectedTask = event.currentTarget.parentElement.className;
+            selectedTaskForEdit = event.currentTarget;
         })
 
         document.addEventListener("click",()=>{
@@ -118,19 +135,36 @@ enterTask.addEventListener("keydown",(event)=>{
         })
 
         deleteTask.addEventListener("click",()=>{
-            taskArray.forEach(divs => {
-                if(divs.className === selectedTask){
-                    const indexOfDiv = taskArray.indexOf(divs,0);
-                    divs.remove();
+            taskArray.forEach(div => {
+                if(div.className === selectedTask){
+                    const indexOfDiv = taskArray.indexOf(div,0);
+                    div.remove();
                     taskArray.splice(indexOfDiv,1);
                     checkArray.splice(indexOfDiv,1);
                 }
             });
         })
 
+        editTask.addEventListener("click",(event)=>{
+            editTaskInput.style.display = "block";
+            editTaskInput.style.left = `${event.clientX}px`;
+            editTaskInput.style.top = `${event.clientY}px`;
+        })
+
+        editTaskInput.addEventListener("keydown",(event)=>{
+            if(event.key === "Enter"){
+                if(editTaskInput.value.trim() != ''){
+                    selectedTaskForEdit.textContent = editTaskInput.value;
+                    editTaskInput.style.display = "none";
+                }else{
+                    alert("Enter something");
+                }
+            }
+        })
+
         clearAll.addEventListener("click",()=>{
-            taskArray.forEach(divs => {
-                divs.remove();
+            taskArray.forEach(div => {
+                div.remove();
                 taskArray.shift();
                 checkArray.shift();
             });

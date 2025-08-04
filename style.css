@@ -62,7 +62,7 @@ button{
 #clearAll,#progress{
     width: 40%;
 }
-.contextMenu{
+.contextMenu,#editInput{
     display: none;
     position: absolute; 
     z-index: 1000;
@@ -72,6 +72,11 @@ button{
     background-color: lightblue;
     padding: 0.5em;
     opacity: 0.8;
+}
+#editInput{
+    padding: 1em;
+    width: 25em;
+    opacity: 0.9;
 }
 .taskPending, .taskCompleted{
     background-color: black;

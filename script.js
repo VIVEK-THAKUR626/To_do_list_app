@@ -2,6 +2,7 @@ const addTask = document.getElementById("addTask");
 const enterTask = document.getElementById("enterTask");
 const editTask = document.getElementById("edit");
 const deleteTask = document.getElementById("delete");
+const clearAll = document.getElementById("clearAll");
 
 const toDoList = document.querySelector(".list");
 const contextMenu = document.querySelector(".contextMenu");
@@ -53,6 +54,14 @@ addTask.addEventListener("click",()=>{
                     taskArray.splice(indexOfDiv,1);
                     checkArray.splice(indexOfDiv,1);
                 }
+            });
+        })
+
+        clearAll.addEventListener("click",()=>{
+            taskArray.forEach(divs => {
+                divs.remove();
+                taskArray.shift();
+                checkArray.shift();
             });
         })
 
@@ -119,6 +128,14 @@ enterTask.addEventListener("keydown",(event)=>{
             });
         })
 
+        clearAll.addEventListener("click",()=>{
+            taskArray.forEach(divs => {
+                divs.remove();
+                taskArray.shift();
+                checkArray.shift();
+            });
+        })
+
         taskDiv.appendChild(task);
         taskDiv.appendChild(checkbox);
 
@@ -128,8 +145,6 @@ enterTask.addEventListener("keydown",(event)=>{
         taskIndex += 1;
 
         toDoList.appendChild(taskDiv);
-    }else{
-        alert("ENTER A TASK");
     }
     }
     
